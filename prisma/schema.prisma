@@ -14,6 +14,19 @@ datasource db {
 
 model Jarat{
   id Int @id @default(autoincrement())
-  szam String @unique
-  tipus String
+  Szam String @unique
+  tipus JaratTipus @relation(fields: [tipusId], references: [id])
+  tipusId Int
+  megallok Megallo[]
+}
+model JaratTipus{
+  id Int @id @default(autoincrement())
+  nev String
+  jaratok Jarat[]
+}
+ 
+model Megallo {
+  id Int @id @default(autoincrement())
+  nev String
+  jaratok Jarat[]
 }
